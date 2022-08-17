@@ -1,0 +1,31 @@
+# Importing Modules
+from colorthief import ColorThief
+import tkinter as tk
+
+# Loading the selected image
+ct = ColorThief('/Users/sammy/Desktop/Python Projects/strawberry.jpg') 
+
+#Loading ColorThief to scan the image
+dominant_color = ct.get_color(quality=5)
+# Quality is simply the amount of pixels scanned. 
+# Max is 10. The higher the number, the faster, yet more innacurate.
+
+print("Dominant color is..  ", dominant_color)
+
+#Creating/Configuring a window that displayes the Color 
+wn = tk.Tk()
+wn.title("Color Display")
+window_width = 300
+window_height = 200
+wn.resizable(False, False)
+
+# Function that helps with translating the dominant color to a readable RGB code. (For Tkinter)
+def _from_rgb(rgb):
+    return "#%02x%02x%02x" % rgb 
+wn.configure(bg=_from_rgb((dominant_color))) 
+
+wn.mainloop()
+
+
+
+
